@@ -1,0 +1,58 @@
+Project Structure
+Copy
+
+trading_bot/
+├── config/
+│   └── config.yaml
+├── data_preprocessing/
+├── models/
+├── reinforcement_learning/
+├── utils/
+├── hyperparameter_tuner.py
+├── final_model_trainer.py
+├── raytune_rl.py
+├── train_rl.py
+├── raytune_filter.py
+├── evaluate_model.py
+├── README.md
+├── requirements.txt
+└── LICENSE
+
+Usage
+1. Set Up Configuration
+
+    Update config/config.yaml with your desired settings (e.g., tickers, date range, interval).
+
+2. Tune Hyperparameters
+
+    Transformer Model:
+    python hyperparameter_tuner.py
+
+    RL Agent:
+    python raytune_rl.py
+
+    Kalman Filter:
+    python raytune_filter.py
+
+3. Train the Final Models
+
+    Transformer Model:
+    python final_model_trainer.py
+
+    RL Agent:
+    python train_rl.py
+
+4. Evaluate the Model
+    python evaluate_model.py
+
+Results
+
+    The best hyperparameters are saved in best_params.json.
+
+    The final models are saved as best_model.h5 (Transformer) and sac_trading_model (RL agent).
+
+    Evaluation results are saved in evaluation_results.json.
+
+Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.

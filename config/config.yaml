@@ -1,0 +1,155 @@
+# Core Configuration
+tickers: ["AAPL", "SPY", "GOOGL"]  # Can add more tickers dynamically
+time_settings:
+  train:
+    start_date: "2021-01-01"
+    end_date: "2023-01-01"
+  test:
+    start_date: "2023-01-01"
+    end_date: "2025-01-01"
+  interval: "1d"  # Options: 1m, 5m, 15m, 1h, 1d
+  timezone: "America/New_York"  # Important for time-sensitive operations
+
+# Trading Environment Parameters
+trading:
+  initial_balance: 1000.0
+  max_daily_loss_pct: 0.05  # 5% daily loss limit
+  transaction_cost: 0.001  # 0.1% per trade
+  slippage: 0.0005  # 0.05% slippage
+  risk_free_rate: 0.02  # 2% annual
+  position_limits:
+    min: -2.0  # Max short position
+    max: 2.0   # Max long position
+    leverage: 2.0  # Max leverage allowed
+
+# Data Processing
+data:
+  scaling:
+    price_scaler: "MinMax"  # Options: MinMax, Robust, Standard
+    feature_scaler: "Robust"
+  validation:
+    min_data_points: 100  # Minimum required data points per ticker
+    test_size: 0.2  # 20% holdout for validation
+
+# Model Architecture
+model:
+  transformer:
+    architecture:
+      lookback: 30  # Historical time steps
+      sequence_length: 30
+      input_shape: [30, 54]  # Automatically calculated as: lookback * (n_features * n_tickers)
+      output_dim: 6  # Close + 5 indicators per ticker
+      num_heads: 4
+      dropout_rate: 0.42
+      num_layers: 1
+      ff_dim: 512
+    regularization:
+      l2_reg: 0.00077
+      gradient_clip: 0.5  # Gradient clipping value
+    training:
+      batch_size: 16
+      epochs: 2000
+      patience: 10
+      learning_rate: 0.00075
+
+# Reinforcement Learning
+rl:
+  hyperparams:
+    algorithm: "SAC"  # Options: SAC, PPO, A2C
+    learning_rate: 0.00005
+    batch_size: 512  
+    ent_coef: "auto"  # Can be "auto" or specific value
+    buffer_size: 100000
+    tau: 0.005  # Target network update rate
+    gamma: 0.99  # Discount factor
+    policy: "MlpPolicy"  # Policy network type
+    net_arch: [128, 128]  # Network architecture
+  training:
+    total_steps: 100000  # Increased from 50k
+    chunk_size: 5000  # Steps per training chunk
+    log_interval: 10
+    eval_freq: 1000
+    early_stopping:
+      patience: 3  # Bad epochs before stopping
+      min_reward: -1000  # Minimum acceptable reward
+  action_space:
+    low: -2.0
+    high: 2.0
+
+# Technical Indicators (Dynamic Configuration)
+indicators:
+  common_window: 14  # Default window size
+  volatility_window: 14  # For volatility calculations
+  rsi:
+    window: 14
+    overbought: 70
+    oversold: 30
+  moving_averages:
+    sma: [5, 10, 20]
+    ema: [10, 20, 50]
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  bollinger:
+    window: 20
+    std_dev: 2
+  atr:
+    window: 14  # Average True Range
+  obv: true  # On Balance Volume enabled
+
+# Risk Management
+risk:
+  max_drawdown: 0.25  # 25% max portfolio drawdown
+  position_concentration: 0.3  # Max 30% in single asset
+  stop_loss:
+    enabled: true
+    trailing: 0.05  # 5% trailing stop
+  take_profit:
+    enabled: true
+    ratio: 0.1  # 10% take profit
+
+# Reward Structure
+reward:
+  components:
+    sharpe_weight: 0.3
+    growth_weight: 0.7
+    drawdown_penalty: 0.1
+    concentration_penalty: 0.05
+  clipping:
+    min: -10
+    max: 10
+
+# API Configuration (Consider using environment variables)
+apis:
+  alpaca:
+    key: ${ALPACA_KEY}" "
+    secret: ${ALPACA_SECRET}" "
+    base_url: "https://paper-api.alpaca.markets"
+    paper: true
+  newsapi: "f76b4883d0f5493c928b8fca9f08a94f"
+  alpha_vantage: "FCCYOYQ6NIWK85T5"
+  fred: "06718acb6a36a4c366d26c02787014db"
+
+# Dynamic Execution Parameters
+execution:
+  device: "auto"  # auto/cpu/cuda
+  parallelism:
+    data_loading: true
+    num_workers: 4
+  logging:
+    level: "INFO"  # DEBUG/INFO/WARNING/ERROR
+    tensorboard: true
+    save_freq: 1000
+
+logging:
+  level: "DEBUG"  # DEBUG/INFO/WARNING/ERROR
+  format: "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+  file:
+    enabled: true
+    path: "logs/trading_bot.log" 
+    max_size: 10  # MB
+    backups: 3
+  console:
+    enabled: true
+    colors: true  # Colorized output

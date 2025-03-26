@@ -1,0 +1,5 @@
+ray
+pandas
+yfinance
+scikit-learn
+tensorflow

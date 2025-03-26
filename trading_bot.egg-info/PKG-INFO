@@ -1,0 +1,9 @@
+Metadata-Version: 2.2
+Name: trading_bot
+Version: 0.1
+Requires-Dist: ray
+Requires-Dist: pandas
+Requires-Dist: yfinance
+Requires-Dist: scikit-learn
+Requires-Dist: tensorflow
+Dynamic: requires-dist

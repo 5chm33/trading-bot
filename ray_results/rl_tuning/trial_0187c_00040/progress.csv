@@ -1,0 +1,3 @@
+mean_reward,timestamp,checkpoint_dir_name,done,training_iteration,trial_id,date,time_this_iter_s,time_total_s,pid,hostname,node_ip,time_since_restore,iterations_since_restore
+-15.471199075141726,1742770534,,False,1,0187c_00040,2025-03-23_15-55-34,594.3653607368469,594.3653607368469,20072,PS2023NAHFSMES,127.0.0.1,594.3653607368469,1
+-15.471199075141726,1742770534,,False,2,0187c_00040,2025-03-23_15-55-34,0.0,594.3653607368469,20072,PS2023NAHFSMES,127.0.0.1,594.3653607368469,2
