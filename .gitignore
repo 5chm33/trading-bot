@@ -1,0 +1,31 @@
+# Python temporary files
+__pycache__/
+*.pyc
+*.log
+*.egg-info/
+
+# Model files
+*.zip
+*.h5
+*.pkl
+model_artifacts/
+
+# Data files
+*.csv
+*.parquet
+
+# Environment files
+.env
+venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# TA-LIB and TensorBoard
+ta-lib-*/
+tensorboard_logs/
+
+# System files
+.DS_Store
+thumbs.db
