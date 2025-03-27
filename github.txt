@@ -1,1 +1,12 @@
-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
+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
+
+git remote set-url origin https://5chm33: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@github.com/5chm33/trading-bot.git
+git config --global credential.helper store  # Saves token securely
+
+git config --global user.email thomasnance290@yahoo.com
+git config --global user.name Thomas Nance
+
+git remote set-url origin https://5chm33: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@github.com/5chm33/trading-bot.git
+
+git filter-repo --replace-text <(echo "${ALPACA_KEY}==>${ALPACA_KEY}") --force
+git filter-repo --replace-text <(echo "${ALPACA_SECRET}==>${ALPACA_SECRET}") --force
