@@ -3626,3 +3626,96 @@ ValueError: Missing base columns for aapl: ['aapl_open', 'aapl_high', 'aapl_low'
 2025-03-26 11:01:32,614 | DEBUG | TransformerTrainer initialized successfully.
 2025-03-26 11:01:33,051 | DEBUG | TransformerTrainer initialized successfully.
 2025-03-26 11:01:33,438 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:15:47,323 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:15:47,747 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:15:48,054 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:18:15,506 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:18:15,921 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:18:16,313 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:21:43,121 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:21:43,553 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:21:43,952 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:25:43,087 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:25:43,540 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:25:43,983 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:37:06,314 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:37:06,742 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:37:07,130 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:43:44,923 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:43:45,367 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:43:45,767 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:57:28,581 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:57:29,003 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 20:57:29,402 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:12:29,649 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:12:30,070 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:12:30,469 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:18:51,961 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:18:52,385 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:18:52,773 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:35:40,580 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:35:41,000 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:35:41,388 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:44:12,645 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:44:13,128 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:44:13,516 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:58:22,041 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:58:22,462 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 21:58:22,852 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:24:35,381 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:24:35,816 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:24:36,224 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:40:33,435 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:40:33,853 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:40:34,250 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:55:54,146 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:55:54,645 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 22:55:55,050 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:07:05,109 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:07:05,541 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:07:05,937 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:59:06,424 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:59:06,849 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-26 23:59:07,241 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:10:17,740 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:10:18,166 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:10:18,567 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:32:32,476 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:32:32,940 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:32:33,260 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:46:06,942 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:46:07,378 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 00:46:07,770 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:04,564 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:05,010 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:05,403 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:56,047 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:56,482 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 08:39:56,885 | DEBUG | TransformerTrainer initialized successfully.
+2025-03-27 20:57:17,335 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 20:57:17,490 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 20:57:17,633 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:02:12,610 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:02:12,791 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:02:12,975 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:11:52,549 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:11:52,732 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:11:52,863 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:28:30,854 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:28:31,064 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:28:31,190 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:42:40,297 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:42:40,448 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 21:42:40,606 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:07:26,854 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:07:27,029 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:07:27,168 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:10:42,361 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:10:42,514 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:10:42,644 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:18:57,998 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:18:58,188 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:18:58,315 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:28:11,807 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:28:11,966 | models.transformer_trainer | DEBUG | All missing values handled successfully
+2025-03-27 22:28:12,081 | models.transformer_trainer | DEBUG | All missing values handled successfully

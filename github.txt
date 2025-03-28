@@ -8,5 +8,5 @@ git config --global user.name Thomas Nance
 
 git remote set-url origin https://5chm33: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@github.com/5chm33/trading-bot.git
 
-git filter-repo --replace-text <(echo "${ALPACA_KEY}==>${ALPACA_KEY}") --force
-git filter-repo --replace-text <(echo "${ALPACA_SECRET}==>${ALPACA_SECRET}") --force
+git filter-repo --replace-text <(echo "PKVH0VQ18CL4K9U0E6BA==>${ALPACA_KEY}") --force
+git filter-repo --replace-text <(echo "pDOuIoh3XP4qv3Ma2RhwY3NuZsSxPIJ1avs56OUG==>${ALPACA_SECRET}") --force

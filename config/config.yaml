@@ -123,8 +123,8 @@ reward:
 # API Configuration (Consider using environment variables)
 apis:
   alpaca:
-    key: "${ALPACA_KEY}"
-    secret: "${ALPACA_SECRET}"
+    key: "PKVH0VQ18CL4K9U0E6BA"
+    secret: "pDOuIoh3XP4qv3Ma2RhwY3NuZsSxPIJ1avs56OUG"
     base_url: "https://paper-api.alpaca.markets"
     paper: true
   newsapi: "f76b4883d0f5493c928b8fca9f08a94f"
