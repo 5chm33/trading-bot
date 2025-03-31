@@ -1,4 +1,4 @@
-# QuantumTrader Pro 
+# QuantumTrader Pro  
 *Next-Gen Algorithmic Trading Platform Combining Transformer Forecasting with SAC Reinforcement Learning*
 
 ## 🌌 Core Architecture
@@ -23,11 +23,9 @@ flowchart TD
     G --> I[Performance Dashboards]
     end
 
-🧠 Model Architecture
-1. Transformer Time Series Forecaster
-mermaid
-Copy
+Model Architecture
 
+1. Transformer Time Series Forecaster
 flowchart LR
     A[Market Data] --> B[Regime Detection]
     B --> C[Multi-Head Attention]
@@ -40,29 +38,21 @@ flowchart LR
     end
 
 Key Features:
+    Regime-Adaptive Attention: Dynamically adjusts attention heads
 
-    Regime-Adaptive Attention: Dynamically adjusts attention heads based on:
-    python
-    Copy
+class RegimeAttention(layers.Layer):
+    def __init__(self, num_heads):
+        super().__init__()
+        self.num_heads = num_heads
+        self.regime_weights = tf.Variable(
+            initial_value=tf.random.normal([3, num_heads]),  # 3 regimes
+            trainable=True)
 
-    class RegimeAttention(layers.Layer):
-        def __init__(self, num_heads):
-            super().__init__()
-            self.num_heads = num_heads
-            self.regime_weights = tf.Variable(
-                initial_value=tf.random.normal([3, num_heads]),  # 3 regimes
-                trainable=True)
+    Multi-Quantile Output: Predicts 10th/50th/90th percentiles
 
-    Multi-Quantile Output: Predicts 10th/50th/90th percentiles simultaneously
-
-    Kalman Filter Smoothing: Reduces prediction jitter with Bayesian updating
+    Kalman Filter Smoothing: Bayesian prediction updating
 
 2. Soft Actor-Critic (SAC) Trading Agent
-
-Neural Architecture:
-mermaid
-Copy
-
 flowchart TD
     A[Market State] --> B[Feature Extractor]
     B --> C[256D Latent Space]
@@ -71,24 +61,18 @@ flowchart TD
     C --> F[Q-Network]
     
     subgraph "SAC Core"
-    D -->|µ, σ| E
+    D -->|μ, σ| E
     F -->|Q-Value| G[Experience Replay]
     end
 
 Optimization Pipeline:
-bash
-Copy
-
 python src/pipeline/tuning/hyperparameter_tuner.py  # Transformer tuning
 python src/pipeline/training/final_model_trainer.py  # Final transformer
 python src/pipeline/tuning/raytune_rl.py  # RL hyperparameter search
 python src/pipeline/training/train_rl.py  # RL policy training
-python src/pipeline/evaluation/evaluate_model.py  # Full backtest
+python src/pipeline/evaluation/evaluate_model.py  # Full backtest        
 
 📊 Monitoring Stack
-mermaid
-Copy
-
 flowchart LR
     A[Trading Engine] --> B[Prometheus Metrics]
     B --> C[Grafana]
@@ -105,15 +89,13 @@ flowchart LR
     I --> J[Alert Manager]
     end
 
-Key Metrics Tracked:
+    Key Metrics Tracked:
 Metric	Description	Alert Threshold
 portfolio_value	Live equity curve	5% daily drop
 market_regime	Current volatility regime	N/A
 action_entropy	Policy uncertainty	< 0.2 bits
+
 🛠 Technical Stack
-Core Dependencies
-text
-Copy
 
 # Machine Learning
 tensorflow==2.12.0
@@ -131,10 +113,8 @@ prometheus-client==0.17.1
 grafana-dashboard-generator==1.0.1
 uvicorn==0.22.0
 
-Bayesian Optimization Setup
-python
-Copy
 
+Bayesian Optimization Setup
 # src/pipeline/tuning/hyperparameter_tuner.py
 def tune_transformer(config):
     space = {
@@ -147,16 +127,10 @@ def tune_transformer(config):
 🚀 Deployment
 
 1. Local Development:
-bash
-Copy
-
 docker-compose up -d prometheus grafana  # Monitoring
 python src/pipeline/training/train_rl.py --config config/prod.yaml
 
 2. Cloud Deployment (AWS/GCP):
-bash
-Copy
-
 # Terraform example
 module "trading_bot" {
   source = "./modules/ecs"
@@ -173,10 +147,8 @@ Metric	Transformer Only	RL Hybrid
 Sharpe Ratio	1.2	2.8
 Max Drawdown	-18%	-9%
 Win Rate	58%	73%
-🔮 Future Roadmap
-mermaid
-Copy
 
+🔮 Future Roadmap
 gantt
     title Development Timeline
     dateFormat  YYYY-MM-DD
