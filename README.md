@@ -1,6 +1,3 @@
-Here's the fully corrected README.md without emojis that will render properly on GitHub:
-
-```markdown
 # QuantumTrader Pro
 Next-Gen Algorithmic Trading Platform Combining Transformer Forecasting with SAC Reinforcement Learning
 
