@@ -20,7 +20,8 @@ python src\pipeline\tuning\raytune_rl.py
 
 python src\pipeline\tuning\raytune_filter.py
 
-
+Tests:
+python tests\unit\test_data_pipeline.py
 
 thomasnance290.grafana.net
 
@@ -40,5 +41,5 @@ docker-compose -f monitoring/docker-compose.yml up -d
 Manual GitHub send
 
 git add .
-git commit --no-verify -m "Emergency backup: Working trading bot"
+git commit --no-verify -m "-updated README"
 git push
