@@ -25,6 +25,7 @@ class TradingEnv(gym.Env):
         
         # Initialize state
         self.portfolio_value = float(config['trading']['initial_balance'])
+        self._last_portfolio_value = self.portfolio_value  # Track previous value for returns
         self._peak_portfolio = self.portfolio_value
         self.positions = np.zeros(len(self.tickers))
         self.returns = deque(maxlen=21)
@@ -82,7 +83,7 @@ class TradingEnv(gym.Env):
         self._peak_portfolio = max(self._peak_portfolio, self.portfolio_value)
         
         # Calculate metrics
-        self.returns.append((self.portfolio_value - prev_value) / prev_value)
+        self.returns.append((self.portfolio_value - prev_value) / (prev_value + 1e-8))
         reward = self._calculate_reward()
         
         # Prepare outputs
@@ -91,11 +92,14 @@ class TradingEnv(gym.Env):
         info = {
             'step': self.current_step,
             'portfolio_value': self.portfolio_value,
-            'positions': dict(zip(self.tickers, self.positions))
+            'positions': dict(zip(self.tickers, self.positions)),
+            'sharpe': self._calculate_sharpe(),
+            'drawdown': self._current_drawdown()
         }
         
         # Update state
         self._update_metrics(action)
+        self._last_portfolio_value = self.portfolio_value  # Update for next step
         self.current_step += 1
         
         return observation, reward, terminated, False, info
@@ -104,6 +108,7 @@ class TradingEnv(gym.Env):
         """Reset environment state"""
         self.current_step = 0
         self.portfolio_value = float(self.config['trading']['initial_balance'])
+        self._last_portfolio_value = self.portfolio_value
         self._peak_portfolio = self.portfolio_value
         self.positions = np.zeros(len(self.tickers))
         self.returns = deque(maxlen=21)
@@ -119,12 +124,12 @@ class TradingEnv(gym.Env):
             close_col = f"{ticker.lower()}_close"
             current = self.data.iloc[self.current_step][close_col]
             prev = self.data.iloc[self.current_step-1][close_col] if self.current_step > 0 else current
-            changes[i] = (current - prev) / (prev + 1e-9)
+            changes[i] = (current - prev) / (prev + 1e-8)  # Add epsilon to avoid division by zero
         return changes
 
     def _calculate_reward(self) -> float:
         """Calculate regime-aware trading reward"""
-        ret = (self.portfolio_value - self._last_portfolio_value) / self._last_portfolio_value
+        ret = (self.portfolio_value - self._last_portfolio_value) / (self._last_portfolio_value + 1e-8)
         sharpe = self._calculate_sharpe()
         drawdown = self._current_drawdown()
         
@@ -140,17 +145,17 @@ class TradingEnv(gym.Env):
         if len(self.returns) < 2:
             return 0.0
         returns = np.array(list(self.returns)[-window:])
-        return float(np.mean(returns) / (np.std(returns) + 1e-9))
+        return float(np.mean(returns) / (np.std(returns) + 1e-8))  # Add epsilon
 
     def _current_drawdown(self) -> float:
         """Calculate current drawdown from peak"""
-        return float((self._peak_portfolio - self.portfolio_value) / (self._peak_portfolio + 1e-9))
+        return float((self._peak_portfolio - self.portfolio_value) / (self._peak_portfolio + 1e-8))
 
     def _update_metrics(self, action: np.ndarray):
         """Update monitoring metrics"""
         for i, ticker in enumerate(self.tickers):
             self.metrics['positions'].labels(ticker=ticker).set(float(action[i]))
-            if abs(action[i] - self.positions[i]) > 0.05:
+            if abs(action[i] - self.positions[i]) > 0.05:  # Only log significant position changes
                 trade_type = 'long' if action[i] > self.positions[i] else 'short'
                 self.metrics['trades'].labels(ticker=ticker, type=trade_type).inc()
         

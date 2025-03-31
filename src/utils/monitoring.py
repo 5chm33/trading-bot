@@ -12,17 +12,30 @@ class TradingMonitor:
     _instance = None
     DEFAULT_PORT = 8000  # Class-level default
 
-    def __new__(cls, port: int = None):
+    def __new__(cls, config: Dict = None):
         if cls._instance is None:
             cls._instance = super(TradingMonitor, cls).__new__(cls)
             cls._instance._initialized = False
         return cls._instance
 
-    def __init__(self, port: int = None):
+    def __init__(self, config: Dict = None):
         if not self._initialized:
-            self.port = self._validate_port(port)
+            self.port = self._get_port_from_config(config)
             self._init_server()
             self._initialized = True
+
+    def _get_port_from_config(self, config: Dict) -> int:
+        """Extract port from config with fallbacks"""
+        if config is None:
+            return self.DEFAULT_PORT
+            
+        try:
+            # Try getting port from monitoring config section
+            port = config.get('monitoring', {}).get('port', self.DEFAULT_PORT)
+            return self._validate_port(port)
+        except Exception as e:
+            logger.warning(f"Failed to parse port from config: {str(e)}")
+            return self.DEFAULT_PORT
 
     def _validate_port(self, port: Any) -> int:
         """Ensure port is valid integer within range"""
