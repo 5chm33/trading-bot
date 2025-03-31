@@ -6,7 +6,7 @@
 ## 🌌 Core Architecture
 
 ```mermaid
-graph TD
+flowchart TD
     A[Hyperparameter Tuner] --> B[Transformer Trainer]
     B --> C[RL Optimizer]
     C --> D[Live Trading Engine]
@@ -30,7 +30,7 @@ graph TD
 mermaid
 Copy
 
-graph LR
+flowchart LR
     A[Market Data] --> B[Regime Detection]
     B --> C[Multi-Head Attention]
     C --> D[Positional Encoding]
@@ -65,7 +65,7 @@ Neural Architecture:
 mermaid
 Copy
 
-graph TD
+flowchart TD
     A[Market State] --> B[Feature Extractor]
     B --> C[256D Latent Space]
     C --> D[Policy Network]
@@ -91,7 +91,7 @@ python src/pipeline/evaluation/evaluate_model.py  # Full backtest
 mermaid
 Copy
 
-graph LR
+flowchart LR
     A[Trading Engine] --> B[Prometheus Metrics]
     B --> C[Grafana]
     C --> D[Dashboards]
