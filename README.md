@@ -1,7 +1,8 @@
 # QuantumTrader Pro 
 *Next-Gen Algorithmic Trading Platform Combining Transformer Forecasting with SAC Reinforcement Learning*
 
-![System Architecture](docs/system_architecture.png)
+<!-- Remove the image line if you don't have the image yet -->
+<!-- ![System Architecture](docs/system_architecture.png) -->
 
 ## 🌌 Core Architecture
 
