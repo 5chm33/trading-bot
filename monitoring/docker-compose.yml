@@ -1,22 +1,27 @@
-version: '3'
 services:
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:10.2.0
     ports:
       - "3000:3000"
     volumes:
-      - grafana-storage:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
+      - ./dashboards:/etc/grafana/provisioning/dashboards
     depends_on:
       - prometheus
 
 volumes:
-  grafana-storage:
+  prometheus_data:
+  grafana_data:

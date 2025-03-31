@@ -1,5 +1,0 @@
-2025-03-26 11:53:24,082 | reinforcement_learning.trading_env | CRITICAL | Pipeline failed: Invalid config structure
-Traceback (most recent call last):
-  File "C:\Users\Admin\trading_bot\final_model_trainer.py", line 135, in main
-    raise ValueError("Invalid config structure")
-ValueError: Invalid config structure

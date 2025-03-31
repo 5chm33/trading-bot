@@ -1,0 +1,75 @@
+groups:
+- name: trading-risk-alerts
+  rules:
+  - alert: ExtremeRiskBreach
+    expr: |
+      max_drawdown > 0.25 or
+      (position_concentration > 0.3 and volatility_21d > 0.15) or
+      (position_size{ticker=~"SPY|QQQ"} > 0.5)
+    for: 2m  # Faster response for extreme risk
+    labels:
+      severity: 'page'
+      auto_mitigate: 'true'
+    annotations:
+      summary: "🚨 EMERGENCY: {{ $labels.ticker }} Risk Breach {{ $value | humanize }}"
+      action: "Immediately reduce positions by 50%"
+      dashboard: "http://grafana/d/risk-overview"
+
+  - alert: StrategyDivergence
+    expr: |
+      (
+        (rate(portfolio_value[1h]) - rate(benchmark_return[1h])) 
+        / (stddev(portfolio_value[1h]) + 1e-9)
+      ) > 2  # 2 sigma divergence
+    for: 15m
+    labels:
+      severity: 'warning'
+      type: 'performance'
+    annotations:
+      description: |
+        {{ $labels.ticker }} diverging at {{ $value | humanizePercentage }} 
+        (Benchmark: {{ query "rate(benchmark_return[1h])" | first | humanizePercentage }})
+
+- name: system-alerts
+  rules:
+  - alert: LatencySpike
+    expr: |
+      histogram_quantile(0.99, rate(step_latency_seconds_bucket[1m])) > 0.15 or
+      rate(step_timeouts_total[5m]) > 0
+    for: 1m
+    labels:
+      severity: 'critical'
+      subsystem: 'execution'
+    annotations:
+      action: "Switch to fallback execution path"
+
+  - alert: DataFeedDegradation
+    expr: |
+      rate(market_data_errors_total[5m]) > 3 or
+      (absent(market_data_freshness_seconds) > 300)
+    for: 3m
+    labels:
+      severity: 'warning'
+
+- name: recovery-alerts
+  rules:
+  - alert: RiskNormalized
+    expr: |
+      max_drawdown < 0.1 and
+      position_concentration < 0.15 and
+      volatility_21d < 0.1
+    for: 15m
+    labels:
+      severity: 'info'
+    annotations:
+      summary: "✅ Risk parameters normalized"
+
+  - alert: StrategyRecovered
+    expr: |
+      abs(
+        (rate(portfolio_value[1h]) - rate(benchmark_return[1h]))
+        / (stddev(portfolio_value[1h]) + 1e-9)
+      ) < 0.5  # Under 0.5 sigma
+    for: 30m
+    labels:
+      severity: 'info'

@@ -9,7 +9,7 @@ def get_search_space():
         "dropout_rate": tune.uniform(0.1, 0.5),        # Wider range
         "num_layers": tune.choice([1, 2, 3]),          # More options
         "ff_dim": tune.choice([128, 256, 512]),        # More options
-        "batch_size": tune.choice([16, 32, 64]),       # More options
+        "batch_size": tune.choice([32, 64, 128,]),       # More options
         "l2_reg": tune.loguniform(1e-4, 1e-2),         # Wider range
         "lookback": tune.choice([30]),         # More options
         "sequence_length": tune.choice([30]),  # More options

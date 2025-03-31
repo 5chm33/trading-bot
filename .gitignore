@@ -29,3 +29,11 @@ tensorboard_logs/
 # System files
 .DS_Store
 thumbs.db
+
+# Secrets
+config/secrets/*.env
+*.pem
+*.key
+
+# Local files
+local_settings.py

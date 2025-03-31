@@ -1,0 +1,20 @@
+[project]
+name = "trading_bot"
+version = "1.0.0"
+description = "AI-powered options trading system"
+requires-python = ">=3.9"
+dependencies = [
+    "alpaca-py>=0.18.0",
+    "tensorflow>=2.12.0",
+    "stable-baselines3>=2.0.0",
+    "ray[tune]>=2.5.0",
+    "prometheus-client>=0.16.0"
+]
+
+[build-system]
+requires = ["setuptools>=65.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest]
+testpaths = ["tests"]
+python_files = "test_*.py"

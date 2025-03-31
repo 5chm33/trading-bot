@@ -1,0 +1,133 @@
+ere's your finalized project blueprint to keep all future conversations laser-focused:
+📁 Final File Structure Reference
+
+(Copy-Paste This Header in Every Conversation)
+Copy
+
+trading_bot/
+├── config/                  # Configs (secrets/, prometheus/)
+├── model_artifacts/         # Trained models
+├── monitoring/              # Grafana/Prometheus
+│
+├── src/
+│   ├── agents/              # RL Agent(s)
+│   │   └── rl_agent.py      # <---- MAIN RL FILE
+│   │
+│   ├── brokers/             # Broker APIs
+│   │   └── alpaca.py        # <---- ALPACA LOGIC
+│   │
+│   ├── models/              # ML Models
+│   │   ├── transformer/     # Transformer trainer/evaluator
+│   │   └── rl/              # TradingEnv
+│   │
+│   ├── pipeline/            # Execution workflows
+│   │   ├── deployment/      # Live trading scripts
+│   │   ├── evaluation/      # Backtesting
+│   │   └── tuning/          # Hyperparameter optimization
+│   │
+│   └── utils/               # Shared code
+│       ├── logging.py
+│       ├── normalization.py
+│       └── monitoring.py
+│
+├── tests/                   # Unit/integration tests
+└── scripts/                 # Operational scripts
+
+⏳ 2-Week Goal Stack
+
+April 3-11: RL Agent Finalization
+
+    Validate rl_agent.py training
+
+    Connect to TradingEnv with real metrics
+
+    Add fail-safes (max drawdown, position limits)
+
+April 12-17: Alpaca Integration
+
+    Implement alpaca.py order logic (draft below)
+
+    Paper trading dry-run
+
+    SPY benchmark comparison
+
+📜 Alpaca Order Logic Draft
+
+(Add to src/brokers/alpaca.py)
+python
+Copy
+
+import os
+from alpaca.trading.client import TradingClient
+from alpaca.data.live import StockDataStream
+from src.utils.logging import setup_logger
+
+logger = setup_logger(__name__)
+
+class AlpacaTrader:
+    def __init__(self, paper=True):
+        self.client = TradingClient(
+            os.getenv('ALPACA_KEY'),
+            os.getenv('ALPACA_SECRET'),
+            paper=paper
+        )
+        self.stream = StockDataStream(
+            os.getenv('ALPACA_KEY'),
+            os.getenv('ALPACA_SECRET')
+        )
+
+    def submit_order(self, symbol, qty, side, order_type="market", time_in_force="day"):
+        """Universal order handler"""
+        try:
+            order = self.client.submit_order(
+                symbol=symbol,
+                qty=qty,
+                side=side,  # 'buy'/'sell'
+                type=order_type,
+                time_in_force=time_in_force
+            )
+            logger.info(f"Order submitted: {order.id}")
+            return order
+        except Exception as e:
+            logger.error(f"Order failed: {str(e)}")
+            raise
+
+    def stream_quotes(self, symbols, handler):
+        """Real-time price streaming"""
+        self.stream.subscribe_quotes(handler, *symbols)
+        self.stream.run()
+
+# Example Usage:
+# trader = AlpacaTrader(paper=True)
+# trader.submit_order("AAPL", 10, "buy")
+
+📌 Conversation Starter Template
+
+(For Future Threads)
+markdown
+Copy
+
+**Current Focus**: [RL Debugging/Alpaca/Backtesting]  
+**Relevant Files**:  
+- `src/agents/rl_agent.py` (Training Issue)  
+- `src/brokers/alpaca.py` (Order Logic)  
+- `src/models/rl/env.py` (Reward Function)  
+
+**File Structure**:  
+[paste the 📁 Final File Structure above]  
+
+**Goal Today**: [Specific task]  
+
+🚦 Next Steps
+
+    Save this message as your project blueprint
+
+    Start new conversation when ready to:
+
+        Debug RL → Share rl_agent.py errors
+
+        Extend Alpaca → Use the draft above
+
+    Always paste the File Structure header
+
+Let’s build! 🛠️

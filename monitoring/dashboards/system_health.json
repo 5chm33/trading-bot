@@ -1,0 +1,19 @@
+{
+    "title": "System Health Dashboard",
+    "panels": [
+      {
+        "title": "Pipeline Latency",
+        "type": "histogram",
+        "targets": [{
+          "expr": "rate(step_latency_seconds_sum[5m])"
+        }]
+      },
+      {
+        "title": "GPU Utilization",
+        "type": "gauge",
+        "targets": [{
+          "expr": "gpu_utilization"
+        }]
+      }
+    ]
+  }

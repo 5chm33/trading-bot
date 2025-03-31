@@ -1,0 +1,74 @@
+trading_bot/
+├── config/
+│   ├── secrets/                    # ✔️ Encrypted secrets setup complete
+│   │   ├── .env.gpg                # ✔️ GPG encryption verified
+│   │   └── secrets.yaml.gpg        # ✔️ Secrets management operational
+│   │
+│   ├── prometheus/                 # ✔️ Monitoring configured
+│   │   ├── alerts.yml              # ✔️ Alert rules validated
+│   │   └── prometheus.yml          # ✔️ Metrics collection working
+│   │
+│   └── search_space.py             # ✔️ Hyperparameter spaces defined
+│   └── config.yaml                 # ✔️ Main config validated
+│
+├── model_artifacts/                # ✔️ Model versioning implemented
+│   ├── production/                 # ✔️ Production model storage
+│   │   └── scalers/                # ✔️ Scaler persistence working
+│   └── staging/                    # ✔️ Testing area ready
+│
+├── monitoring/                     # ✔️ Grafana/Prometheus operational
+│   ├── dashboards/                 # ✔️ Trading metrics dashboards live
+│   └── docker-compose.yml          # ✔️ Stack deployment verified
+│
+├── src/
+│   ├── agents/                     # ✔️ RL agent fully refactored
+│   │   └── rl_agent.py             # ✔️ Imports fixed (src. prefixes)
+│   │
+│   ├── brokers/                    # ✔️ Alpaca integration draft ready
+│   │   └── alpaca.py               # ⚠️ Order logic draft complete (needs testing)
+│   │
+│   ├── models/
+│   │   ├── rl/                     # ✔️ Env/agent separation finalized
+│   │   │   ├── env.py              # ✔️ Simplified name + fixed imports
+│   │   │   └── __init__.py         # ✔️ Proper packaging
+│   │   │
+│   │   └── transformer/            # ✔️ Trainer/evaluator organized
+│   │       ├── trainer.py          # ✔️ Renamed + imports fixed
+│   │       └── __init__.py         # ✔️ Explicit exports added
+│   │
+│   ├── pipeline/                   # ✔️ Workflows structured
+│   │   ├── tuning/                 # ✔️ Ray Tune scripts validated
+│   │   └── training/               # ✔️ Training entrypoints clean
+│   │
+│   └── utils/                      # ✔️ Shared code standardized
+│       ├── logging.py              # ✔️ Custom→standard rename complete
+│       └── normalization.py        # ✔️ Imports fixed
+│
+├── tests/                          # ✔️ Test framework ready
+│   └── unit/                       # ⚠️ Needs RL agent tests
+│
+└── scripts/                        # ✔️ Automation scripts operational
+    └── decrypt_secrets.sh          # ✔️ Secret loading verified
+│
+├── tests/
+│   ├── unit/
+│   │   ├── test_data_processing.py
+│   │   └── test_rl_agent.py
+│   └── integration/
+│       ├── test_trading_env.py
+│       └── test_pipeline.py
+│
+├── docker/
+│   ├── prometheus/
+│   │   └── Dockerfile
+│   └── grafana/
+│       └── provisioning/
+│           ├── dashboards/
+│           └── datasources/
+│
+├── .env.example                    # Environment template
+├── .gitignore
+├── Makefile                        # Build automation
+├── pyproject.toml                  # Modern Python config
+├── README.md
+└── requirements.txt

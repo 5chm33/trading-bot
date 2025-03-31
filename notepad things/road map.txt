@@ -1,0 +1,12 @@
+gantt
+    title Trading Bot Development Roadmap
+    dateFormat  YYYY-MM-DD
+    section Alpha Stage
+    Live Paper Trading       :done,    des1, 2024-03-01, 30d
+    Multi-Asset Backtesting  :active,  des2, 2024-04-01, 60d
+    section TradeIdeas-Level
+    Pattern Recognition     :         des3, 2024-06-01, 45d
+    News Sentiment Analysis :         des4, 2024-07-15, 30d
+    section Hedge Fund-Grade
+    Market Impact Modeling  :         des5, 2024-09-01, 90d
+    Dark Pool Detection     :         des6, 2024-11-01, 60d

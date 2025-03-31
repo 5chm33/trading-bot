@@ -1,0 +1,37 @@
+global:
+  scrape_interval: 15s  # Faster sampling for trading
+  evaluation_interval: 15s
+  external_labels:
+    environment: 'production'
+    trading_bot: 'v2.1'
+
+# Rule files contains alerting and recording rules
+rule_files:
+  - 'alerts.yml'
+  - 'recording_rules.yml'
+
+scrape_configs:
+  - job_name: 'trading-core'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['host.docker.internal:8001']
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: '(env_steps_total|portfolio_value|position_size|trades_executed|max_drawdown|sharpe_ratio|volatility_21d|latency_.*)'
+        action: keep
+      - source_labels: [ticker]
+        regex: '(AAPL|SPY|GOOGL)'  # Your symbols
+        action: keep
+
+  - job_name: 'system'
+    static_configs:
+      - targets: ['localhost:9100']  # Node exporter
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: '(cpu_usage|memory_usage|gpu_utilization|disk_io|network_traffic)'
+        action: keep
+
+  - job_name: 'trading-api'
+    static_configs:
+      - targets: ['localhost:8080']  # Your API if exists
+    metrics_path: '/actuator/prometheus'
