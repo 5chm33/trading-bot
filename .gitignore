@@ -1,0 +1,101 @@
+# Python temporary files
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.py,cover
+*.so
+*.egg-info/
+*.egg
+*.log
+*.ipynb_checkpoints
+
+# Model files
+models/
+*.zip
+*.h5
+*.pkl
+*.pt
+*.joblib
+model_artifacts/
+checkpoints/
+
+# Environment/API keys
+.env
+.env.*
+!.env.gpg.template
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Data files
+data/
+*.csv
+*.parquet
+*.feather
+*.hdf5
+*.db
+*.sqlite
+*.npy
+*.npz
+
+# Training logs
+*.tfevents.*
+events.out.tfevents.*
+tensorboard/
+tensorboard_logs/
+logs/
+wandb/
+
+# Monitoring
+monitoring/prometheus.yml
+prometheus_data/
+grafana_data/
+
+# System/IDE
+.DS_Store
+thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Secrets
+config/secrets/
+*.pem
+*.key
+local_settings.py
+credentials.json
+
+# Ray tuning files
+ray_short/
+ray_results/
+experiment_state-*.json
+trial_*/progress.csv
+
+# Docker
+docker-compose.override.yml
+*.dockerignore
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Cache
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv*/

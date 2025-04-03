@@ -1,0 +1,14 @@
+groups:
+- name: trading-rules
+  rules:
+  - record: strategy:sharpe_ratio:15m
+    expr: avg_over_time(sharpe_ratio[15m])
+
+  - record: strategy:volatility:annualized
+    expr: volatility_21d * sqrt(252)
+
+  - record: position:net_exposure
+    expr: sum(position_size)
+
+  - record: trade:execution_rate
+    expr: rate(trades_executed_total[5m])

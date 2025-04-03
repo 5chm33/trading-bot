@@ -1,0 +1,78 @@
+cd C:\Users\Admin\trading_bot\
+python main.py
+
+streamlit run dashboard.py
+
+python transformer6.py
+
+python transformer_final_trainer.py
+
+python evaluate_model.py
+
+python hyperparameter_tuner.py
+
+python final_model_trainer.py
+
+python src\pipeline\training\train_rl.py
+python src\pipeline\training\train_rl.py 2>&1 | tee training_logs.txt
+
+python src\pipeline\tuning\raytune_rl.py
+
+python src\pipeline\tuning\raytune_filter.py
+
+Tests:
+python tests\unit\test_data_pipeline.py
+python tests\unit\test_imports.py
+
+Paper Trading: 
+cd C:\Users\Admin\trading_bot
+python scripts\run_paper_trading.py
+
+Backtesting:
+python -c "
+import pandas as pd
+from src.models.rl.env import TradingEnv
+from src.agents.rl_agent import RLAgent
+data = pd.read_csv('historical_data.csv')
+env = TradingEnv(data, config)
+agent = RLAgent(env, config)
+print('Backtest agent initialized successfully!')
+"
+
+Live Trading: 
+python -c "
+from src.models.rl.env import LiveTradingEnv
+from src.brokers.alpaca.paper import AlpacaPaperBroker
+from src.agents.rl_agent import RLAgent
+broker = AlpacaPaperBroker(config)
+env = LiveTradingEnv(broker, config, None)
+agent = RLAgent(env, config)
+print('Live trading agent initialized successfully!')
+"
+
+
+Dashboard:
+
+taskkill /f /im python.exe
+
+check Prometheus metrics:
+curl http://localhost:8001/metrics | findstr "trades_executed bot_progress_steps
+
+docker-compose -f monitoring/docker-compose.yml up -d
+
+
+# Base installation
+pip install -e .
+
+# With development tools
+pip install -e ".[dev]"
+
+# With analysis tools
+pip install -e ".[analysis]"
+
+
+Manual GitHub send
+
+git add .
+git commit --no-verify -m "integration of Alpaca API"
+git push

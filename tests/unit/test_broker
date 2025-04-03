@@ -1,0 +1,19 @@
+config = load_config("config/config.yaml")
+broker = AlpacaPaperBroker(config)
+
+# Test all required methods
+print(broker.get_account_balance())
+print(broker.get_positions()) 
+print(broker.get_current_prices())
+
+# Test order execution
+try:
+    result = broker.execute({
+        'symbol': 'AAPL',
+        'qty': 1,
+        'side': 'buy',
+        'type': 'market'
+    })
+    print("Order result:", result)
+except Exception as e:
+    print("Order failed:", str(e))

@@ -1,0 +1,192 @@
+{
+    "title": "Algorithmic Trading Command Center",
+    "uid": "algo-trading-v2",
+    "editable": true,
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Portfolio Health",
+        "type": "row",
+        "panels": [
+          {
+            "title": "NAV Timeline",
+            "type": "timeseries",
+            "datasource": "Prometheus",
+            "targets": [{
+              "expr": "trading_portfolio_value",
+              "legendFormat": "{{ticker}}"
+            }],
+            "unit": "currencyUSD",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "orange", "value": 8000 },
+                { "color": "green", "value": 10000 }
+              ]
+            }
+          },
+          {
+            "title": "Risk Exposure",
+            "type": "gauge",
+            "datasource": "Prometheus",
+            "targets": [
+              { "expr": "trading_max_drawdown", "legendFormat": "Drawdown" },
+              { "expr": "trading_volatility_21d", "legendFormat": "Volatility" }
+            ],
+            "options": {
+              "showThresholdMarkers": true,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  { "color": "green", "value": null },
+                  { "color": "orange", "value": 0.2 },
+                  { "color": "red", "value": 0.5 }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "title": "Execution Engine",
+        "type": "row",
+        "panels": [
+          {
+            "title": "Trade Flow",
+            "type": "barchart-stacked",
+            "datasource": "Prometheus",
+            "targets": [
+              {
+                "expr": "sum by (status)(rate(trading_trade_status_total{status='filled'}[1m]))",
+                "legendFormat": "Filled"
+              },
+              {
+                "expr": "sum by (status)(rate(trading_trade_status_total{status='failed'}[1m]))",
+                "legendFormat": "Failed"
+              }
+            ],
+            "bars": true,
+            "stack": true
+          },
+          {
+            "title": "Latency Heatmap",
+            "type": "heatmap",
+            "datasource": "Prometheus",
+            "targets": [{
+              "expr": "histogram_quantile(0.95, sum(rate(trading_rollback_latency_seconds_bucket[1m])) by (le))",
+              "legendFormat": "P95 Latency"
+            }],
+            "color": {
+              "mode": "spectrum",
+              "scheme": "Oranges"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Alpha Signals",
+        "type": "row",
+        "panels": [
+          {
+            "title": "Sharpe Ratio",
+            "type": "stat",
+            "datasource": "Prometheus",
+            "targets": [{
+              "expr": "trading_sharpe_ratio",
+              "legendFormat": "Current"
+            }],
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto"
+          },
+          {
+            "title": "Position Concentration",
+            "type": "piechart",
+            "datasource": "Prometheus",
+            "targets": [{
+              "expr": "abs(trading_position_size) by (ticker)",
+              "legendFormat": "{{ticker}}"
+            }],
+            "pieType": "donut"
+          }
+        ]
+      },
+      {
+        "title": "System Telemetry",
+        "type": "row",
+        "panels": [
+          {
+            "title": "Decision Timing",
+            "type": "histogram",
+            "datasource": "Prometheus",
+            "targets": [{
+              "expr": "rate(histogram_quantile(0.9, sum(rate(env_decision_time_bucket[1m])) by (le))"
+            }],
+            "bucketSize": 50,
+            "bucketOffset": 0
+          },
+          {
+            "title": "Error Rate",
+            "type": "state-timeline",
+            "datasource": "Prometheus",
+            "targets": [
+              {
+                "expr": "sum(rate(trading_rollback_failures_total[1m])) by (reason)",
+                "legendFormat": "{{reason}}"
+              }
+            ],
+            "colorMode": "continuous-BlPu"
+          }
+        ]
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "ticker",
+          "datasource": "Prometheus",
+          "query": "label_values(trading_trades_executed, ticker)",
+          "multi": true,
+          "includeAll": true
+        },
+        {
+          "name": "timeframe",
+          "datasource": "Prometheus",
+          "query": "1m,5m,15m,1h,1d",
+          "current": "1h"
+        }
+      ]
+    },
+    "refresh": "5s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": ["5s", "15s", "1m"],
+      "time_options": ["5m", "15m", "1h", "6h", "12h", "24h"]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Trades",
+          "datasource": "Prometheus",
+          "enable": true,
+          "expr": "trading_trades_executed > 0",
+          "title": "Trade Executed",
+          "color": "green"
+        },
+        {
+          "name": "Risk Events",
+          "datasource": "Prometheus",
+          "enable": true,
+          "expr": "trading_rollback_failures_total > 0",
+          "title": "ROLLBACK",
+          "color": "red"
+        }
+      ]
+    }
+  }

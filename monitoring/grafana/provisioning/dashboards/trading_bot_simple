@@ -1,0 +1,67 @@
+{
+    "title": "Trading Bot Dashboard",
+    "uid": "trading-bot-v2",
+    "panels": [
+      {
+        "title": "Portfolio Overview",
+        "type": "stat",
+        "datasource": "Prometheus",
+        "targets": [{
+          "expr": "trading_portfolio_value",
+          "format": "time_series"
+        }],
+        "gridPos": {"x": 0, "y": 0, "w": 12, "h": 3},
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto"
+        }
+      },
+      {
+        "title": "Trades Executed",
+        "type": "timeseries",
+        "datasource": "Prometheus",
+        "targets": [{
+          "expr": "sum by (ticker, direction)(increase(trading_trades_executed[1m]))",
+          "legendFormat": "{{ticker}} ({{direction}})"
+        }],
+        "gridPos": {"x": 0, "y": 3, "w": 12, "h": 6},
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "drawStyle": "bars",
+              "lineInterpolation": "linear"
+            }
+          }
+        }
+      },
+      {
+        "title": "Risk Metrics",
+        "type": "gauge",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "trading_sharpe_ratio",
+            "legendFormat": "Sharpe"
+          },
+          {
+            "expr": "trading_max_drawdown",
+            "legendFormat": "Drawdown"
+          }
+        ],
+        "gridPos": {"x": 12, "y": 0, "w": 12, "h": 6},
+        "options": {
+          "showThresholdMarkers": true,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 0.2 }
+            ]
+          }
+        }
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 35
+  }

@@ -1,0 +1,16 @@
+{
+	"auths": {
+		"https://index.docker.io/v1/access-token": {},
+		"https://index.docker.io/v1/refresh-token": {}
+	},
+	"credsStore": "desktop",
+	"currentContext": "desktop-linux",
+	"plugins": {
+		"-x-cli-hints": {
+			"enabled": "true"
+		}
+	},
+	"features": {
+		"hooks": "true"
+	}
+}

@@ -1,0 +1,90 @@
+# prometheus/alerts.yml
+groups:
+- name: trading-risk-alerts
+  rules:
+  - alert: ExtremeRiskBreach
+    expr: |
+      trading_max_drawdown > 0.25 or
+      (position_concentration > 0.3 and volatility_21d > 0.15) or
+      (position_size{ticker=~"SPY|QQQ"} > 0.5)
+    for: 2m
+    labels:
+      severity: 'page'
+      auto_mitigate: 'true'
+    annotations:
+      summary: "🚨 EMERGENCY: {{ $labels.ticker }} Risk Breach {{ $value | humanize }}"
+      action: "Immediately reduce positions by 50%"
+      dashboard: "http://grafana/d/risk-overview"
+
+  - alert: StrategyDivergence
+    expr: |
+      (
+        (rate(trading_portfolio_value[1h]) - rate(benchmark_return{ticker=~"SPY"}[1h])
+        / (stddev(trading_portfolio_value[1h]) + 1e-9)
+      ) > 2
+    for: 15m
+    labels:
+      severity: 'warning'
+    annotations:
+      description: "Strategy diverging from benchmark ({{ $value | humanizePercentage }})"
+
+- name: execution-alerts
+  rules:
+  - alert: RollbackFailure
+    expr: |
+      rate(trading_rollback_failures_total[5m]) > 0 or
+      trading_rollback_latency_seconds_count > 5
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      action: "CHECK ORDER FLOW IMMEDIATELY"
+
+  - alert: HighTradeFailureRate
+    expr: |
+      rate(trading_trade_status{status="failed"}[5m]) / 
+      rate(trading_trade_status[5m]) > 0.1
+    for: 5m
+    labels:
+      severity: 'warning'
+
+- name: system-alerts
+  rules:
+  - alert: LatencySpike
+    expr: |
+      histogram_quantile(0.99, rate(trading_rollback_latency_seconds_bucket[1m])) > 0.5
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      action: "Switch to fallback execution path"
+
+  - alert: DataStaleness
+    expr: |
+      time() - trading_data_freshness_seconds > 60
+    for: 3m
+    labels:
+      severity: 'warning'
+
+- name: recovery-notices
+  rules:
+  - alert: RiskNormalized
+    expr: |
+      trading_max_drawdown < 0.1 and
+      position_concentration < 0.15 and
+      volatility_21d < 0.1
+    for: 15m
+    labels:
+      severity: 'info'
+    annotations:
+      summary: "✅ Risk parameters normalized"
+
+  - alert: StrategyRecovered
+    expr: |
+      abs(
+        (rate(trading_portfolio_value[1h]) - rate(benchmark_return{ticker=~"SPY"}[1h])
+        / (stddev(trading_portfolio_value[1h]) + 1e-9)
+      ) < 0.5
+    for: 30m
+    labels:
+      severity: 'info'

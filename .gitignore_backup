@@ -1,0 +1,44 @@
+# Python temporary files
+__pycache__/
+*.pyc
+*.log
+*.egg-info/
+
+# Model files
+models/
+*.zip
+*.h5
+*.pkl
+*.pt
+model_artifacts/
+
+# Environment/API keys
+.env
+.env.*
+venv/
+
+# Data files
+*.csv
+*.parquet
+*.feather
+
+# Training logs
+*.tfevents.*
+events.out.tfevents.*
+tensorboard/
+tensorboard_logs/
+
+# Monitoring
+monitoring/prometheus.yml
+
+# System/IDE
+.DS_Store
+thumbs.db
+.vscode/
+.idea/
+
+# Secrets
+config/secrets/
+*.pem
+*.key
+local_settings.py
