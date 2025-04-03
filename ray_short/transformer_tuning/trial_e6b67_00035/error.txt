@@ -1,0 +1,33 @@
+Failure # 1 (occurred at 2025-03-13_22-36-16)
+[36mray::ImplicitFunc.train()[39m (pid=23000, ip=127.0.0.1, actor_id=547879f67788629afa14da5001000000, repr=<lambda>)
+  File "python\\ray\\_raylet.pyx", line 1883, in ray._raylet.execute_task
+  File "python\\ray\\_raylet.pyx", line 1824, in ray._raylet.execute_task.function_executor
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\_private\function_manager.py", line 696, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 463, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\tune\trainable\trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\air\_internal\util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\tune\trainable\function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 463, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\tune\trainable\function_trainable.py", line 261, in _trainable_func
+    output = fn()
+             ^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\ray\tune\trainable\util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\trading_bot\transformer6.py", line 1493, in <lambda>
+    tune.with_parameters(lambda config, checkpoint_dir=None: trainer.train_with_ray_tune(config, checkpoint_dir, data=data)),
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\trading_bot\transformer6.py", line 369, in train_with_ray_tune
+    raise ValueError("Data preparation failed.")
+ValueError: Data preparation failed.

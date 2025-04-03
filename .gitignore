@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python temporary files
 __pycache__/
 *.py[cod]
@@ -99,3 +100,47 @@ docker-compose.override.yml
 
 # Virtual environments
 venv*/
+=======
+# Python temporary files
+__pycache__/
+*.pyc
+*.log
+*.egg-info/
+
+# Model files
+*.zip
+*.h5
+*.pkl
+model_artifacts/
+
+# Keep .env in root but add to .gitignore
+echo ".env" >> .gitignore
+
+# Data files
+*.csv
+*.parquet
+
+# Environment files
+.env
+venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# TA-LIB and TensorBoard
+ta-lib-*/
+tensorboard_logs/
+
+# System files
+.DS_Store
+thumbs.db
+
+# Secrets
+config/secrets/*.env
+*.pem
+*.key
+
+# Local files
+local_settings.py
+>>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852

@@ -1,0 +1,26 @@
+{
+    "title": "Backtest Analysis",
+    "panels": [
+      {
+        "title": "Strategy vs Benchmark",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "portfolio_value",
+            "legendFormat": "Strategy"
+          },
+          {
+            "expr": "benchmark_return",
+            "legendFormat": "SPY"
+          }
+        ]
+      },
+      {
+        "title": "Rolling Sharpe (21-day)",
+        "type": "stat",
+        "targets": [{
+          "expr": "sharpe_ratio_21d"
+        }]
+      }
+    ]
+  }

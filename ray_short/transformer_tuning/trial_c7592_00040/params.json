@@ -1,0 +1,11 @@
+{
+  "batch_size": 128,
+  "dropout_rate": 0.38656817246748953,
+  "ff_dim": 256,
+  "l2_reg": 0.0004258493603491099,
+  "learning_rate": 3.2311983928056736e-05,
+  "lookback": 30,
+  "num_heads": 4,
+  "num_layers": 2,
+  "sequence_length": 30
+}

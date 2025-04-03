@@ -1,0 +1,6 @@
+setup.py
+trading_bot.egg-info/PKG-INFO
+trading_bot.egg-info/SOURCES.txt
+trading_bot.egg-info/dependency_links.txt
+trading_bot.egg-info/requires.txt
+trading_bot.egg-info/top_level.txt

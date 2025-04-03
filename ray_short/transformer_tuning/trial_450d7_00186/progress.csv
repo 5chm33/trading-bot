@@ -1,0 +1,2 @@
+loss,test_loss,timestamp,checkpoint_dir_name,done,training_iteration,trial_id,date,time_this_iter_s,time_total_s,pid,hostname,node_ip,time_since_restore,iterations_since_restore
+0.7108145952224731,0.6500495076179504,1741942030,,False,1,450d7_00186,2025-03-14_01-47-10,8.933840990066528,8.933840990066528,27492,PS2023NAHFSMES,127.0.0.1,8.933840990066528,1

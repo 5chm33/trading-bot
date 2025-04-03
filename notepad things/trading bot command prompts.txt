@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 cd C:\Users\Admin\trading_bot\
 python main.py
 
@@ -76,3 +77,50 @@ Manual GitHub send
 git add .
 git commit --no-verify -m "integration of Alpaca API"
 git push
+=======
+cd C:\Users\Admin\trading_bot\
+python main.py
+
+streamlit run dashboard.py
+
+python transformer6.py
+
+python transformer_final_trainer.py
+
+python evaluate_model.py
+
+python hyperparameter_tuner.py
+
+python final_model_trainer.py
+
+python src\pipeline\training\train_rl.py
+python src\pipeline\training\train_rl.py 2>&1 | tee training_logs.txt
+
+python src\pipeline\tuning\raytune_rl.py
+
+python src\pipeline\tuning\raytune_filter.py
+
+Tests:
+python tests\unit\test_data_pipeline.py
+
+thomasnance290.grafana.net
+
+
+Dashboard:
+
+taskkill /f /im python.exe
+
+check Prometheus metrics:
+curl http://localhost:8001/metrics | findstr "trades_executed bot_progress_steps
+
+docker-compose -f monitoring/docker-compose.yml up -d
+
+
+
+
+Manual GitHub send
+
+git add .
+git commit --no-verify -m "-updated README"
+git push
+>>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852

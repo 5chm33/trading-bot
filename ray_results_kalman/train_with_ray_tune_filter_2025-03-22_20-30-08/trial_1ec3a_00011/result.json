@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"mse": 0.1012733819288615, "timestamp": 1742700615, "checkpoint_dir_name": null, "done": false, "training_iteration": 1, "trial_id": "1ec3a_00011", "date": "2025-03-22_20-30-15", "time_this_iter_s": 0.00998830795288086, "time_total_s": 0.00998830795288086, "pid": 20116, "hostname": "PS2023NAHFSMES", "node_ip": "127.0.0.1", "config": {"observation_covariance": 0.3008843035161562, "transition_covariance": 0.028921889527035262}, "time_since_restore": 0.00998830795288086, "iterations_since_restore": 1}
+=======
+{"mse": 0.1012733819288615, "timestamp": 1742700615, "checkpoint_dir_name": null, "done": false, "training_iteration": 1, "trial_id": "1ec3a_00011", "date": "2025-03-22_20-30-15", "time_this_iter_s": 0.00998830795288086, "time_total_s": 0.00998830795288086, "pid": 20116, "hostname": "PS2023NAHFSMES", "node_ip": "127.0.0.1", "config": {"observation_covariance": 0.3008843035161562, "transition_covariance": 0.028921889527035262}, "time_since_restore": 0.00998830795288086, "iterations_since_restore": 1}
+>>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852

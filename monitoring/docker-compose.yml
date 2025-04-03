@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -23,4 +24,28 @@ services:
 
 volumes:
   prometheus_data:
+=======
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Single file mount
+      - prometheus_data:/prometheus
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./dashboards:/etc/grafana/provisioning/dashboards 
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+>>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852
   grafana_data:

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -21,3 +22,18 @@
         entry: powershell -Command "if (git diff --cached --name-only | Select-String -Pattern '\.(h5|pkl|pt|tfevents|bin|onnx|ckpt)$|[\\/](models|weights|checkpoints|data|training|protected_files)[\\/]') { exit 1 }"
         language: system
         stages: [commit]
+=======
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-yaml
+
+- repo: https://github.com/Yelp/detect-secrets
+  rev: v1.5.0
+  hooks:
+    - id: detect-secrets
+      args: ['--baseline', '.secrets.baseline']
+>>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852

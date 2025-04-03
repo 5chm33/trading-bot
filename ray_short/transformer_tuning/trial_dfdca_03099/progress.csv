@@ -1,0 +1,3 @@
+loss,timestamp,checkpoint_dir_name,done,training_iteration,trial_id,date,time_this_iter_s,time_total_s,pid,hostname,node_ip,time_since_restore,iterations_since_restore
+0.05680961534380913,1742736182,,False,1,dfdca_03099,2025-03-23_06-23-02,11.021406650543213,11.021406650543213,25724,PS2023NAHFSMES,127.0.0.1,11.021406650543213,1
+0.05680961534380913,1742736182,,False,2,dfdca_03099,2025-03-23_06-23-02,0.0,11.021406650543213,25724,PS2023NAHFSMES,127.0.0.1,11.021406650543213,2
