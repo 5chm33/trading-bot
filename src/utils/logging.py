@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import logging
 from logging.handlers import RotatingFileHandler, QueueHandler, QueueListener
 import coloredlogs
@@ -239,7 +238,6 @@ def log_execution_time(
                 raise
         return wrapper
     return decorator
-=======
 import logging
 from logging.handlers import RotatingFileHandler, QueueHandler, QueueListener
 import coloredlogs
@@ -480,4 +478,3 @@ def log_execution_time(
                 raise
         return wrapper
     return decorator
->>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852

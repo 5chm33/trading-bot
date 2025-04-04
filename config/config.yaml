@@ -1,3 +1,5 @@
+# config\config.yaml
+
 # Core Configuration
 meta:
   version: "2.1.0"  # Added version tracking
@@ -70,7 +72,6 @@ trading:
     - "stop"
   default_order_type: "limit"
 
-
 brokers:
   alpaca:
     max_order_size: 10000
@@ -118,6 +119,67 @@ data:
     min_data_points: 100
     test_size: 0.2
     max_null_pct: 0.05  # Added null threshold
+
+ml_models:
+  regime_classifier:
+    path: "models/regime_classifier.joblib"
+    features:
+      - volatility_30d
+      - iv_rank
+      - skew_30d
+      - term_structure
+      - trend_strength
+      - atr_14d
+      - rsi_14
+    training_schedule: "weekly"
+    hyperparameters:
+      n_estimators: 200
+      max_depth: 5
+      learning_rate: 0.1
+    feature_ranges:  # For validation
+      volatility_30d: [0.1, 1.0]
+      iv_rank: [0, 1]
+    
+  anomaly_detector:
+    path: "models/anomaly_detector.joblib"
+    features:
+      - probability
+      - max_loss
+      - expected_value
+      - iv_rank
+      - days_to_expiry
+    thresholds:
+      isolation: 0.95
+      lof: 0.90
+    training_schedule: "daily"
+    contamination: 0.05
+    n_neighbors: 20
+
+options:
+  expirations: ["240405", "240412"]  # April expirations
+  strike_rules:
+    min_strike: 15000  # $150.00
+    max_strike: 20000  # $200.00  
+    step: 500   # $5.00 increments
+    num_strikes: 10  # Number per side
+  risk_free_rate: 0.05
+  max_expirations: 4
+  
+options_analytics:
+  greeks:
+    risk_free_rate: 0.05
+    default_volatility: 0.3
+    bounds:
+      delta: [-1.5, 1.5]
+      gamma: [0, 0.2]
+      theta: [-0.1, 0]
+      vega: [0, 0.5]
+  volatility_surface:
+    update_freq: 60  # seconds
+    interpolation: "svi"
+  term_structure:
+    lookback: 30  # days
+    expirations: [7, 14, 30, 60]  # DTE buckets
 
 # Enhanced Model Configuration
 model:

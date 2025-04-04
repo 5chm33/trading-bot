@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # tests/unit/test_regime_detection.py
 import pytest
 import pandas as pd
@@ -19,7 +18,6 @@ def test_regime_detection():
     assert np.all(regimes[:50] == 1)  # Bull
     assert np.all(regimes[50:100] == -1)  # Bear
     assert np.all(regimes[100:] == 0)  # Neutral
-=======
 # tests/unit/test_regime_detection.py
 import pytest
 import pandas as pd
@@ -40,4 +38,3 @@ def test_regime_detection():
     assert np.all(regimes[:50] == 1)  # Bull
     assert np.all(regimes[50:100] == -1)  # Bear
     assert np.all(regimes[100:] == 0)  # Neutral
->>>>>>> 60870aec3b9ed2c2cb804ceb4f1eeb5c6af9d852
